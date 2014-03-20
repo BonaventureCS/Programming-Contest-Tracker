@@ -25,7 +25,6 @@
             <li class="active"><a href="/">Submissions</a></li>
             <li><a href="/scoreboard" target="_new">Printable Scoreboard</a></li>
             <li><a href="/scoresheets">Team Sheets</a></li>
-            <li><a href="/setup">Setup</a></li>
           </ul>
           <h3>programmingContest(<?php echo date("Y"); ?>);</h3>
         </div>

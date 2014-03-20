@@ -1,4 +1,5 @@
 <?php
+$contestYear = '2014'; //full contest year goes here <3
 
 $contestStartTimeAndDate = mktime(10, 00, 1, 02, 19, 2013);
 //mktime usage
@@ -9,3 +10,7 @@ $contestStartTimeAndDate = mktime(10, 00, 1, 02, 19, 2013);
 //month: month of contest - 1 cause PHP (and other languages) are inconsistant
 //day: actual day of month
 //year the year
+
+//Don't edit below this line
+$teamTable = $contestYear . '_Teams';
+$solnTable = $contestYear . '_Solutions';

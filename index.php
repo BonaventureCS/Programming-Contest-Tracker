@@ -1,7 +1,10 @@
 <?php
 date_default_timezone_set('America/New_York');
 require 'flight/Flight.php';
-require'settings.php'; //EDIT THIS FILE ON DAY OF CONTEST
+/**
+HEY YOU! YES YOU! EDIT THIS FILE MKAYYYYYY?
+*/
+require 'settings.php'; //EDIT THIS FILE ON DAY OF CONTEST
 
 Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;port=3306;dbname=Contest', 'root', ''), function($db) {
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -9,8 +12,9 @@ Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;port=3306;dbname=Conte
 
 Flight::route('/', function(){
   $conn = Flight::db();
-
-  $schools = $conn->query('SELECT * FROM 2013_Teams ORDER BY name');
+  global $teamTable;
+  global $solnTable;
+  $schools = $conn->query('SELECT * FROM ' . $teamTable . ' ORDER BY name');
 
   Flight::render('homepage', array('schools' => $schools));
 });
@@ -21,8 +25,9 @@ Flight::route('/scoreboard', function(){
 
 Flight::route('/scoresheets', function(){
   $conn = Flight::db();
-
-  $sheets = $conn->query('SELECT teamID, name, problemNumber, time, correct, comments, minutes FROM 2013_Teams t, 2013_Solutions s
+  global $teamTable;
+  global $solnTable;
+  $sheets = $conn->query('SELECT teamID, name, problemNumber, time, correct, comments, minutes FROM ' . $teamTable . ' t, ' . $solnTable . ' s
     WHERE s.teamID = t.id ORDER BY teamID asc, problemNumber asc');
 
   Flight::render('scoresheets', array('sheets' => $sheets));
@@ -30,9 +35,10 @@ Flight::route('/scoresheets', function(){
 
 Flight::route('/submission', function() {
   $conn = Flight::db();
-
-  $stmt = $conn->prepare("INSERT INTO 2013_Solutions (teamID, problemNumber, time, minutes, correct, comments)
-    VALUES (:teamID, :problemNumber, :time, :minutes, :correct, :comments)");
+  global $teamTable;
+  global $solnTable;
+  $stmt = $conn->prepare('INSERT INTO ' . $solnTable . ' (teamID, problemNumber, time, minutes, correct, comments)
+    VALUES (:teamID, :problemNumber, :time, :minutes, :correct, :comments)');
 
   $stmt->bindParam(':teamID', $_POST['team']);
   $stmt->bindParam(':problemNumber', $_POST['problem']);
@@ -64,18 +70,19 @@ This allows the page to parse the content.
 */
 Flight::route('/standings', function(){
   $conn = Flight::db();
-
+  global $teamTable;
+  global $solnTable;
   $standings = $conn->query('SELECT DISTINCT name, problemNumber, correct, teamID, time AS submitted
-    FROM 2013_Solutions s INNER JOIN 2013_Teams t ON s.teamID = t.id ORDER BY name ASC, problemNumber ASC, minutes ASC');
+    FROM ' . $solnTable . ' s INNER JOIN ' . $teamTable . ' t ON s.teamID = t.id ORDER BY name ASC, problemNumber ASC, minutes ASC');
 
-  $minutes   = $conn->query('SELECT sum(minutes) AS timeTaken, name, teamID FROM 2013_Solutions s
-    INNER JOIN 2013_Teams t on s.teamID = t.id WHERE s.correct="Y" GROUP BY t.id');
+  $minutes   = $conn->query('SELECT sum(minutes) AS timeTaken, name, teamID FROM ' . $solnTable . ' s
+    INNER JOIN ' . $teamTable . ' t on s.teamID = t.id WHERE s.correct="Y" GROUP BY t.id');
 
-  $onePoint  = $conn->query('SELECT count(correct) as onePointers, name, teamID FROM 2013_Solutions s
-    INNER JOIN 2013_Teams t ON s.teamID = t.id WHERE correct = \'Y\' and problemNumber > 7 GROUP BY teamID');
+  $onePoint  = $conn->query('SELECT count(correct) as onePointers, name, teamID FROM ' . $solnTable . ' s
+    INNER JOIN ' . $teamTable . ' t ON s.teamID = t.id WHERE correct = \'Y\' and problemNumber > 7 GROUP BY teamID');
 
-  $twoPoint  = $conn->query('SELECT count(correct) as twoPointers, name, teamID FROM 2013_Solutions s
-    INNER JOIN 2013_Teams t ON s.teamID = t.id WHERE correct = \'Y\' and problemNumber <= 7 GROUP BY teamID');
+  $twoPoint  = $conn->query('SELECT count(correct) as twoPointers, name, teamID FROM ' . $solnTable . ' s
+    INNER JOIN ' . $teamTable . ' t ON s.teamID = t.id WHERE correct = \'Y\' and problemNumber <= 7 GROUP BY teamID');
 
 
   $returnArr   = array();

@@ -23,6 +23,7 @@
 
     <body>
       <div class="container">
+      <h1>St. Bonaventure University<br>High School Programming Contest<br>Scoresheets 2014</h1>
        <div class="hidden-print">
          <p class="bg-primary">Just print this page. Althought it doesn't look it it will print all these scoresheets on separate pages. Turn off headers and footers while printing to hide the ugly webaddress, etc.</p>
        </div>
@@ -49,7 +50,7 @@
   </div>
   <hr>
   <div class="">
-    <table id="standingsTable" class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th>Problem Number</th>
@@ -76,6 +77,5 @@
 
       <script src="bower_components/jquery/dist/jquery.min.js"></script>
       <script src="assets/js/tablesorter.min.js"></script>
-      <script src="assets/js/app.js"></script>
     </body>
     </html>
