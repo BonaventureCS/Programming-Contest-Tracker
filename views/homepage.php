@@ -6,8 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Computer Science Department at St. Bonaventure University">
-
-  <title>High School Programming Contest Score Track</title>
+  <title>High School Programming Contest Submissions</title>
 
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -23,9 +22,9 @@
       <div class="container">
         <div class="header">
           <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="/">Score Track</a></li>
+            <li class="active"><a href="/">Submissions</a></li>
             <li><a href="/scoreboard" target="_new">Printable Scoreboard</a></li>
-            <li><a href="/sheets">Team Sheets</a></li>
+            <li><a href="/scoresheets">Team Sheets</a></li>
             <li><a href="/setup">Setup</a></li>
           </ul>
           <h3>programmingContest(<?php echo date("Y"); ?>);</h3>

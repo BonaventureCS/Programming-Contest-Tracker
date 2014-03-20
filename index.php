@@ -19,6 +19,15 @@ Flight::route('/scoreboard', function(){
   Flight::render('scoreboard');
 });
 
+Flight::route('/scoresheets', function(){
+  $conn = Flight::db();
+
+  $sheets = $conn->query('SELECT teamID, name, problemNumber, time, correct, comments, minutes FROM 2013_Teams t, 2013_Solutions s
+    WHERE s.teamID = t.id ORDER BY teamID asc, problemNumber asc');
+
+  Flight::render('scoresheets', array('sheets' => $sheets));
+});
+
 Flight::route('/submission', function() {
   $conn = Flight::db();
 

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Computer Science Department at St. Bonaventure University">
 
-  <title>High School Programming Contest Score Track</title>
+  <title>High School Programming Contest Scoreboard</title>
 
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,7 +22,7 @@
 
       <div class="container">
         <div class="header">
-          <h3>St. Bonaventure University High School Programming Contest <?php echo date("Y"); ?></h3>
+          <h3>St. Bonaventure University High School Programming Contest <?php echo date("Y"); ?> - Scoreboard</h3>
         </div>
         <hr>
         <div class="">
