@@ -56,7 +56,7 @@ Flight::route('/submission', function() {
   $diff = $now->diff($ref);
   $hours = $diff->h;
   $times = $diff->i;
-  $interval = ($hours * 60) + $times + 1;
+  $interval = ($hours * 60) + $times;
 
   $stmt->bindParam(":minutes", $interval);
   $stmt->execute();
