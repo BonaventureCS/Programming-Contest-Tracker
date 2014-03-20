@@ -23,9 +23,10 @@
       <div class="container">
         <div class="header">
           <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="#">Score Track</a></li>
-            <li><a href="#">Printable Scoreboard</a></li>
-            <li><a href="#">Setup</a></li>
+            <li class="active"><a href="/">Score Track</a></li>
+            <li><a href="/scoreboard" target="_new">Printable Scoreboard</a></li>
+            <li><a href="/sheets">Team Sheets</a></li>
+            <li><a href="/setup">Setup</a></li>
           </ul>
           <h3>programmingContest(<?php echo date("Y"); ?>);</h3>
         </div>
@@ -110,7 +111,7 @@
 
         </div>
         <hr>
-        <div class="footer">Warning! This form has no validation. Ya mess up, you need to edit database manually.</div>
+        <div class="footer">Warning! This form has no validation. Ya mess up, you need to edit database manually. &lt;3</div>
       </div>
 
       <script src="bower_components/jquery/dist/jquery.min.js"></script>

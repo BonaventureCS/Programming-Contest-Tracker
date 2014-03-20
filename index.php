@@ -3,7 +3,6 @@ date_default_timezone_set('America/New_York');
 require 'flight/Flight.php';
 require'settings.php'; //EDIT THIS FILE ON DAY OF CONTEST
 
-
 Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;port=3306;dbname=Contest', 'root', ''), function($db) {
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 });
@@ -14,6 +13,10 @@ Flight::route('/', function(){
   $schools = $conn->query('SELECT * FROM 2013_Teams ORDER BY name');
 
   Flight::render('homepage', array('schools' => $schools));
+});
+
+Flight::route('/scoreboard', function(){
+  Flight::render('scoreboard');
 });
 
 Flight::route('/submission', function() {
